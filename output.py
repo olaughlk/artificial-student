@@ -53,7 +53,7 @@ class OneStep(tf.keras.Model):
         input_chars = tf.strings.unicode_split(inputs, 'UTF-8')
         input_ids = self.ids_from_chars(input_chars).to_tensor()
 
-        predicted_logits, states = self.model(inputs=input_ids, states=states,return_state=True)
+        predicted_logits, states, other = self.model(inputs=input_ids, states=states,return_state=True)
 
         predicted_logits = predicted_logits[:,-1, 1]
         predicted_logits = predicted_logits/self.temperature
