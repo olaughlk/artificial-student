@@ -40,7 +40,7 @@ class OneStep(tf.keras.Model):
         self.chars_from_ids = chars_from_ids
         self.ids_from_chars = ids_from_chars
 
-        skip_ids = self.ids_from_chars(['','[UNK]'])[:,None,:]
+        skip_ids = self.ids_from_chars(['','[UNK]'])[:,None]
         sparse_mask = tf.SparseTensor(
             values=[-float('inf')]*len(skip_ids),
             indices=skip_ids,
