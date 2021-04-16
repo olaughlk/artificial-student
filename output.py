@@ -34,7 +34,7 @@ model = keras.models.load_model('model_weights_saved.hdf5')
 
 class OneStep(tf.keras.Model):
     def __init__(self, model, chars_from_ids, ids_from_chars, temperature=1.0):
-        super().__init__()
+        super().__init__(self)
         self.temperature = temperature
         self.model = model
         self.chars_from_ids = chars_from_ids
