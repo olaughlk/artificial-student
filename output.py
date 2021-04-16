@@ -55,7 +55,7 @@ class OneStep(tf.keras.Model):
 
         predicted_logits, states = self.model(inputs=input_ids, states=states,return_state=True)
 
-        predicted_logits = predicted_logits[:, -1, :]
+        predicted_logits = predicted_logits[-1, :]
         predicted_logits = predicted_logits/self.temperature
 
         predicted_logits = predicted_logits + self.prediction_mask
