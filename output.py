@@ -49,7 +49,7 @@ class OneStep(tf.keras.Model):
         self.prediction_mask = tf.sparse.to_dense(sparse_mask)
 
     @tf.function
-    def generate_one_step(inputs, states=None):
+    def generate_one_step(self, inputs, states=None):
         input_chars = tf.strings.unicode_split(inputs, 'UTF-8')
         input_ids = self.ids_from_chars(input_chars).to_tensor()
 
@@ -75,7 +75,7 @@ next_char = tf.constant(['GVSU'])
 result = [next_char]
 
 for n in range(1000):
-    next_char, states = one_step_model.generate_one_step(next_char, states=states)
+    next_char, states = one_step_model.generate_one_step(inputs=next_char, states=states)
     result.append(next_char)
 
 result = tf.strings.join(result)
