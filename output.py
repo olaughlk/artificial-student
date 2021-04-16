@@ -40,7 +40,7 @@ class OneStep(tf.keras.Model):
         self.chars_from_ids = chars_from_ids
         self.ids_from_chars = ids_from_chars
 
-        skip_ids = self.ids_from_chars(['','[UNK]'])[:,None]
+        skip_ids = self.ids_from_chars(['','[UNK]'])[:,None,:]
         sparse_mask = tf.SparseTensor(
             values=[-float('inf')]*len(skip_ids),
             indices=skip_ids,
@@ -55,7 +55,7 @@ class OneStep(tf.keras.Model):
 
         predicted_logits, states = self.model(inputs=input_ids, states=states,return_state=True)
 
-        predicted_logits = predicted_logits[-1, :]
+        predicted_logits = predicted_logits[:,-1, :]
         predicted_logits = predicted_logits/self.temperature
 
         predicted_logits = predicted_logits + self.prediction_mask
