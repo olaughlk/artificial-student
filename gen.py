@@ -7,6 +7,7 @@ import time
 
 path_to_file='./scraped_text.txt'
 
+#just checking
 #read text
 text = open(path_to_file, 'rb').read().decode(encoding='utf-8')
 
