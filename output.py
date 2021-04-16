@@ -75,7 +75,7 @@ next_char = tf.constant(['GVSU'])
 result = [next_char]
 
 for n in range(1,1000):
-    #next_char, states, other = one_step_model.generate_one_step(inputs=next_char, states=states)
+    next_char, states = one_step_model.generate_one_step(inputs=next_char, states=states)
     result.append(next_char)
 
 result = tf.strings.join(result)
