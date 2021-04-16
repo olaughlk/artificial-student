@@ -55,13 +55,13 @@ class OneStep(tf.keras.Model):
 
         predicted_logits, states = self.model(inputs=input_ids, states=states,return_state=True)
 
-        predicted_logits = predicted_logits[:,-1, :]
+        predicted_logits = predicted_logits[:,-1, 1]
         predicted_logits = predicted_logits/self.temperature
 
         predicted_logits = predicted_logits + self.prediction_mask
 
-        predicted_ids = tf.random.categorical(predicted_logits, num_samples=1, 1)
-        predicted_ids = tf.squeeze(predicted_ids, axis=-1, 1)
+        predicted_ids = tf.random.categorical(predicted_logits, num_samples=1)
+        predicted_ids = tf.squeeze(predicted_ids, axis=-1)
 
         predicted_chars = self.chars_from_ids(predicted_ids)
 
