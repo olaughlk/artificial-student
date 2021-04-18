@@ -133,7 +133,7 @@ checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
     save_weights_only = True
 )
 
-EPOCHS = 20
+EPOCHS = 1
 
 history = model.fit(dataset, epochs = EPOCHS, callbacks = [checkpoint_callback])
 
@@ -179,7 +179,7 @@ class OneStep(tf.keras.Model):
 
 one_step_model = OneStep(model, chars_from_ids, ids_from_chars)
 
-tf.saved_model.save(one_step_model, 'artificial-student-model')
+tf.saved_model.save(one_step_model, 'artificial-student-model', save_format="h5")
 
 start = time.time()
 states = None
