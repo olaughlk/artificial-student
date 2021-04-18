@@ -133,7 +133,7 @@ checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
     save_weights_only = True
 )
 
-EPOCHS = 1
+EPOCHS = 0
 
 history = model.fit(dataset, epochs = EPOCHS, callbacks = [checkpoint_callback])
 
@@ -180,6 +180,7 @@ class OneStep(tf.keras.Model):
 one_step_model = OneStep(model, chars_from_ids, ids_from_chars)
 
 tf.saved_model.save(one_step_model, 'artificial-student-model')
+artificial_student = tf.saved_model.load('artificial-student-model')
 
 start = time.time()
 states = None
@@ -187,7 +188,7 @@ next_char = tf.constant(['GVSU'])
 result = [next_char]
 
 for n in range(1,1000):
-    next_char, states = one_step_model.generate_one_step(inputs=next_char, states=states)
+    next_char, states = artificial_student.generate_one_step(inputs=next_char, states=states)
     result.append(next_char)
 
 result = tf.strings.join(result)
