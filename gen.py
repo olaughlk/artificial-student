@@ -137,4 +137,5 @@ EPOCHS = 1
 
 history = model.fit(dataset, epochs = EPOCHS, callbacks = [checkpoint_callback])
 
-model.save(filepath='./model_weights_saved.hdf5', save_format="tf")
+model.summary()
+#model.save(filepath='./model_weights_saved.hdf5', save_format="tf")
