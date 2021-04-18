@@ -183,11 +183,9 @@ one_step_model = OneStep(model, chars_from_ids, ids_from_chars)
 signatures = {
     one_step_model.generate_one_step.get_concrete_function(),
 }
-options = tf.saved_model.SaveOptions(function_aliases={
-    'generate_one_step': generate_one_step
-})
+
 if(epoch_value>0):
-    tf.saved_model.save(one_step_model, 'artificial-student-model')
+    tf.saved_model.save(one_step_model, 'artificial-student-model', signatures=signatures)
 artificial_student = tf.saved_model.load('artificial-student-model')
 
 start = time.time()
