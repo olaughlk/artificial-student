@@ -133,8 +133,8 @@ checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
     save_weights_only = True
 )
 
-EPOCHS = 5
+EPOCHS = 1
 
 history = model.fit(dataset, epochs = EPOCHS, callbacks = [checkpoint_callback])
 
-model.save('./model_weights_saved.hdf5')
+model.save('./model_weights_saved.hdf5', save_format="tf")
