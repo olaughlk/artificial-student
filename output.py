@@ -30,7 +30,7 @@ chars_from_ids = tf.keras.layers.experimental.preprocessing.StringLookup(
     invert = True
 )
 
-model = keras.models.load_model('model_weights_saved.hdf5')
+model = keras.models.load_model('model_weights_20.hdf5')
 
 class OneStep(tf.keras.Model):
     def __init__(self, model, chars_from_ids, ids_from_chars, temperature=1.0):
