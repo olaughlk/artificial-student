@@ -5,6 +5,8 @@ import numpy as np
 import os
 import time
 
+print(tf.__version__)
+
 path_to_file='./scraped_text.txt'
 epoch_value = 1
 #just checking
