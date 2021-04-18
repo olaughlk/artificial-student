@@ -181,7 +181,7 @@ class OneStep(tf.keras.Model):
 
 one_step_model = OneStep(model, chars_from_ids, ids_from_chars)
 signatures = {
-    one_step_model.generate_one_step.get_concrete_function(),
+    one_step_model.generate_one_step(),
 }
 
 if(epoch_value>0):
