@@ -139,4 +139,4 @@ history = model.fit(dataset, epochs = EPOCHS, callbacks = [checkpoint_callback])
 
 
 model.summary()
-tf.saved_model.save(model, "model_weights_saved.hdf5")
+tf.keras.models.save_model(model, "model_weights_saved.hdf5")
