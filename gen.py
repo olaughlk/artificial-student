@@ -181,8 +181,11 @@ class OneStep(tf.keras.Model):
 
 one_step_model = OneStep(model, chars_from_ids, ids_from_chars)
 signatures = {
-    one_step_model.generate_one_step(),
+    one_step_model.get_concrete_function(),
 }
+options = tf.saved_model.SaveOptions(function_aliases={
+    'generate':generate_one_step
+})
 
 if(epoch_value>0):
     tf.saved_model.save(one_step_model, 'artificial-student-model', signatures=signatures)
