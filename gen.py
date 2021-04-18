@@ -6,7 +6,7 @@ import os
 import time
 
 path_to_file='./scraped_text.txt'
-
+epoch_value = 1
 #just checking
 #read text
 text = open(path_to_file, 'rb').read().decode(encoding='utf-8')
@@ -133,7 +133,7 @@ checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
     save_weights_only = True
 )
 
-EPOCHS = 0
+EPOCHS = epoch_value
 
 history = model.fit(dataset, epochs = EPOCHS, callbacks = [checkpoint_callback])
 
@@ -178,8 +178,8 @@ class OneStep(tf.keras.Model):
         return predicted_chars, states
 
 one_step_model = OneStep(model, chars_from_ids, ids_from_chars)
-
-tf.saved_model.save(one_step_model, 'artificial-student-model')
+if(epoch_value>0):
+    tf.saved_model.save(one_step_model, 'artificial-student-model')
 artificial_student = tf.saved_model.load('artificial-student-model')
 
 start = time.time()
