@@ -5,7 +5,7 @@ import numpy as np
 import os
 import time
 
-artificial_student_model = tf.saved_model.load('artificial-student-model')
+artificial_student_model = tf.keras.models.load_model('artificial-student-model')
 
 start = time.time()
 states = None

@@ -179,7 +179,7 @@ class OneStep(tf.keras.Model):
 
 one_step_model = OneStep(model, chars_from_ids, ids_from_chars)
 
-tf.saved_model.save(one_step_model, 'artificial-student-model', save_format="h5")
+tf.keras.models.save_model(one_step_model,'artificial-student-model', save_format="tf")
 
 start = time.time()
 states = None
