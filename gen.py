@@ -8,7 +8,7 @@ import time
 print(tf.__version__)
 
 path_to_file='./scraped_text.txt'
-epoch_value = 100
+epoch_value = 50
 #just checking
 #read text
 text = open(path_to_file, 'rb').read().decode(encoding='utf-8')
@@ -186,7 +186,7 @@ next_chars = ['GVSU', 'University', 'I', 'We', 'Students', 'Grand', 'With', 'Pro
 next_char = tf.constant([next_chars[0]])
 result = [next_char]
 
-tweets = open("tweet_contents.py")
+tweets = open("tweet_contents.txt")
 
 for i in range(100):
     next_char = tf.constant([next_chars[i%20]])
