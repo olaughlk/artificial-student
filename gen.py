@@ -183,17 +183,24 @@ one_step_model = OneStep(model, chars_from_ids, ids_from_chars)
 
 start = time.time()
 states = None
-next_char = tf.constant(['GVSU'])
+next_chars = ['GVSU', 'University', 'I', 'We', 'Students', 'Grand', 'With', 'Professors', 'COVID', 'Pandemic',  'Together', 'My', 'Today', 'Class', 'When', 'Internship', 'Should', 'A', 'Can', 'Tuition']
+next_char = tf.constant([next_chars[0]])
 result = [next_char]
 
+tweets = open("tweet_contents.py")
+
 for i in range(100):
+    next_char = tf.constant([next_chars[i%20]])
+    result = [next_char]
     for n in range(1,280):
         next_char, states = one_step_model.generate_one_step(inputs=next_char, states=states)
         result.append(next_char)
 
     result = tf.strings.join(result)
-    end = time.time()
+    tweets.write(result[0].numpy().decode('utf-8'), '\n\n' + '_'*80)
+    tweets.write('\n')
     print(result[0].numpy().decode('utf-8'), '\n\n' + '_'*80)
     print()
-
+tweets.close()
+end = time.time()
 print('\nRun time: ', end - start)
