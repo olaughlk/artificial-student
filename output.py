@@ -34,7 +34,7 @@ model = keras.models.load_model('model_weights_saved.hdf5')
 
 class OneStep(tf.keras.Model):
     def __init__(self, model, chars_from_ids, ids_from_chars, temperature=1.0):
-        super().__init__()
+        super().__init__(self)
         self.temperature = temperature
         self.model = model
         self.chars_from_ids = chars_from_ids
@@ -53,9 +53,9 @@ class OneStep(tf.keras.Model):
         input_chars = tf.strings.unicode_split(inputs, 'UTF-8')
         input_ids = self.ids_from_chars(input_chars).to_tensor()
 
-        predicted_logits, states, other = self.model(inputs=input_ids, states=states,return_state=True)
+        predicted_logits, states = self.model(inputs=input_ids, states=states,return_state=True)
 
-        predicted_logits = predicted_logits[:, -1, :]
+        predicted_logits = predicted_logits[:,-1, :]
         predicted_logits = predicted_logits/self.temperature
 
         predicted_logits = predicted_logits + self.prediction_mask
@@ -74,11 +74,11 @@ states = None
 next_char = tf.constant(['GVSU'])
 result = [next_char]
 
-for n in range(1000):
-    next_char, states = one_step_model.generate_one_step(next_char, states=states)
+for n in range(1,1000):
+    next_char, states = one_step_model.generate_one_step(inputs=next_char, states=states)
     result.append(next_char)
 
 result = tf.strings.join(result)
 end = time.time()
-print(result[0].numpy.decode('utf-8'), '\n\n' + '_'*80)
+print(result[0].numpy().decode('utf-8'), '\n\n' + '_'*80)
 print('\nRun time: ', end - start)
