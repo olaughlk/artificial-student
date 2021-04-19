@@ -181,10 +181,6 @@ class OneStep(tf.keras.Model):
 
 one_step_model = OneStep(model, chars_from_ids, ids_from_chars)
 
-if(epoch_value>0):
-    tf.saved_model.save(one_step_model, 'artificial-student-model', signatures=signatures)
-artificial_student = tf.saved_model.load('artificial-student-model')
-
 start = time.time()
 states = None
 next_char = tf.constant(['GVSU'])
