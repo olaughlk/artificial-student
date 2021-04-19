@@ -8,7 +8,7 @@ import time
 print(tf.__version__)
 
 path_to_file='./scraped_text.txt'
-epoch_value = 1
+epoch_value = 20
 #just checking
 #read text
 text = open(path_to_file, 'rb').read().decode(encoding='utf-8')
@@ -180,12 +180,6 @@ class OneStep(tf.keras.Model):
         return predicted_chars, states
 
 one_step_model = OneStep(model, chars_from_ids, ids_from_chars)
-signatures = {
-    one_step_model.get_concrete_function(),
-}
-options = tf.saved_model.SaveOptions(function_aliases={
-    'generate':generate_one_step
-})
 
 if(epoch_value>0):
     tf.saved_model.save(one_step_model, 'artificial-student-model', signatures=signatures)
