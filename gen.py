@@ -112,7 +112,6 @@ model = MyModel(
     rnn_units = rnn_units
 )
 
-### GO HERE TO TEST IF NECESSARY ###
 
 #model training
 
