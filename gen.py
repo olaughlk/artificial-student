@@ -196,8 +196,9 @@ for i in range(100):
         result.append(next_char)
 
     result = tf.strings.join(result)
-    tweets.write(result[0].numpy().decode('utf-8'), '\n\n' + '_'*80)
-    tweets.write('\n')
+    tweets.write(result[0].numpy().decode('utf-8'))
+    tweets.write('\n\n')
+    tweets.write('---------------------------------------------------------------------------------')
     print(result[0].numpy().decode('utf-8'), '\n\n' + '_'*80)
     print()
 tweets.close()
