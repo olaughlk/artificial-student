@@ -10,7 +10,7 @@ import sys
 print(tf.__version__)
 
 path_to_file='./scraped_text.txt'
-epoch_value = 1
+epoch_value = 50
 #just checking
 #read text
 text = open(path_to_file, 'rb').read().decode(encoding='utf-8')
