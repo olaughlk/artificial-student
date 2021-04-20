@@ -188,7 +188,7 @@ next_chars = ['GVSU', 'University', 'I', 'We', 'Students', 'Grand', 'With', 'Pro
 next_char = tf.constant([next_chars[0]])
 result = [next_char]
 
-tweets = open("tweet_contents.txt")
+tweets = open("tweet_contents.txt", 'a')
 #ostd = sys.stdout
 #sys.stdout = tweets
 for i in range(100):
