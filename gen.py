@@ -8,7 +8,7 @@ import time
 print(tf.__version__)
 
 path_to_file='./scraped_text.txt'
-epoch_value = 50
+epoch_value = 1
 #just checking
 #read text
 text = open(path_to_file, 'rb').read().decode(encoding='utf-8')
@@ -196,7 +196,8 @@ for i in range(100):
         result.append(next_char)
 
     result = tf.strings.join(result)
-    tweets.write(result[0].numpy().decode('utf-8'))
+    #tweets.write(result[0].numpy().decode('utf-8'))
+    tweets.write(result[0]);
     tweets.write('\n\n')
     tweets.write('---------------------------------------------------------------------------------')
     print(result[0].numpy().decode('utf-8'), '\n\n' + '_'*80)
