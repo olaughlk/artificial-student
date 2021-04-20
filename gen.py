@@ -202,7 +202,7 @@ for i in range(100):
     #result_string = tweets.write(result[0].numpy().decode('utf-8'))
     #tweets.write(result_string);
     #tweets.write('\n\n')
-    tweets.write('---------------------------------------------------------------------------------')
+    #tweets.write('---------------------------------------------------------------------------------')
     print(result[0].numpy().decode('utf-8'), '\n\n' + '_'*80)
     print()
 sys.stdout = ostd
