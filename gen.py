@@ -188,9 +188,9 @@ next_chars = ['GVSU', 'University', 'I', 'We', 'Students', 'Grand', 'With', 'Pro
 next_char = tf.constant([next_chars[0]])
 result = [next_char]
 
-tweets = open("tweet_contents.txt", 'a')
-#ostd = sys.stdout
-#sys.stdout = tweets
+tweets = open("tweet_contents.txt", 'w')
+ostd = sys.stdout
+sys.stdout = tweets
 for i in range(100):
     next_char = tf.constant([next_chars[i%20]])
     result = [next_char]
@@ -205,7 +205,7 @@ for i in range(100):
     #tweets.write('---------------------------------------------------------------------------------')
     print(result[0].numpy().decode('utf-8'), '\n\n' + '_'*80)
     print()
-#sys.stdout = ostd
+sys.stdout = ostd
 tweets.close()
 end = time.time()
 print('\nRun time: ', end - start)
