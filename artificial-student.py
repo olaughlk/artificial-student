@@ -99,7 +99,7 @@ f.close()
 #######################################################################################
 
 path_to_file='./scraped_text.txt'
-epoch_value = 40
+epoch_value = 50
 
 #read text
 text = open(path_to_file, 'rb').read().decode(encoding='utf-8')
